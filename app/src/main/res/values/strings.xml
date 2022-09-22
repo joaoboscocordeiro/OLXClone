@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">OLX Clone</string>
+
+    <!-- Screen Main Activity -->
+    <string name="app">OLX</string>
+
+    <!-- Screen Login Activity -->
+    <string name="edit_email_login">Email</string>
+    <string name="edit_password_login">Password</string>
+    <string name="btn_enter_login">Entrar</string>
+    <string name="text_login_cadastro">Cadastre-se</string>
+    <string name="text_login_recuperar_senha">Esqueceu a senha?</string>
+
 </resources>

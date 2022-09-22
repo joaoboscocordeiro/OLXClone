@@ -1,8 +1,14 @@
-package com.example.olxclone;
+package com.example.olxclone.ui.view;
+
+import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
+import com.example.olxclone.R;
+
+/**
+ *  Created by João Bosco on 21/09/2022.
+ */
 
 public class MainActivity extends AppCompatActivity {
 
