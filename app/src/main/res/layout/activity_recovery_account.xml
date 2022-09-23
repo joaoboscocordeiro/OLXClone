@@ -5,10 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.login.LoginActivity">
+    tools:context=".ui.register.RecoveryAccountActivity">
 
     <include
-        android:id="@+id/toolbar_login"
+        android:id="@+id/toolbar_recovery"
         layout="@layout/toolbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,79 +21,57 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar_login">
+        app:layout_constraintTop_toBottomOf="@id/toolbar_recovery">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:orientation="vertical"
-            android:paddingHorizontal="32dp">
+            android:padding="32dp">
 
-            <EditText
-                android:id="@+id/edit_email_login"
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_edit"
-                android:drawableStart="@drawable/ic_email"
-                android:drawablePadding="16dp"
-                android:hint="@string/edit_email_login"
-                android:inputType="textEmailAddress"
-                android:padding="16dp" />
+                android:text="@string/txt_recovery_account"
+                android:textAlignment="center"
+                android:textColor="@color/color_purple" />
 
-            <EditText
-                android:id="@+id/edit_password_login"
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:text="@string/edit_email"
+                android:textColor="@color/color_purple" />
+
+            <EditText
+                android:id="@+id/edit_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/bg_edit"
-                android:drawableStart="@drawable/ic_key"
+                android:drawableStart="@drawable/ic_email"
                 android:drawablePadding="16dp"
-                android:hint="@string/edit_password_login"
-                android:inputType="textPassword"
+                android:hint="@string/edit_email"
+                android:inputType="textEmailAddress"
                 android:padding="16dp" />
 
             <android.widget.Button
-                android:id="@+id/btn_sign_in_login"
+                android:id="@+id/btn_recovery_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/bg_button"
-                android:text="@string/btn_sign_in_login"
+                android:text="@string/btn_recovery_password"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/text_login_register"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/text_login_register"
-                    android:textColor="@color/color_purple" />
-
-                <TextView
-                    android:id="@+id/text_login_recover_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/text_login_recover_password"
-                    android:textAlignment="textEnd"
-                    android:textColor="@color/color_purple" />
-
-            </LinearLayout>
 
             <ProgressBar
                 android:id="@+id/progress_bar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_gravity="center"
                 android:theme="@style/ProgressBar"
                 android:visibility="gone"
                 tools:visibility="visible" />

@@ -7,8 +7,19 @@
     <!-- Screen Login Activity -->
     <string name="edit_email_login">Email</string>
     <string name="edit_password_login">Password</string>
-    <string name="btn_enter_login">Entrar</string>
-    <string name="text_login_cadastro">Cadastre-se</string>
-    <string name="text_login_recuperar_senha">Esqueceu a senha?</string>
+    <string name="btn_sign_in_login">Entrar</string>
+    <string name="text_login_register">Cadastre-se</string>
+    <string name="text_login_recover_password">Esqueceu a senha?</string>
+
+    <!-- Screen Sign In Activity -->
+    <string name="edit_name">Nome</string>
+    <string name="edit_email">Email</string>
+    <string name="edit_phone">Telefone</string>
+    <string name="edit_password">Senha</string>
+    <string name="btn_register">Criar Conta</string>
+
+    <!-- Screen Recovery Account Activity -->
+    <string name="txt_recovery_account">Informe seu email cadastrado e você receberá um link para alterar a senha.</string>
+    <string name="btn_recovery_password">Recuperar Senha</string>
 
 </resources>

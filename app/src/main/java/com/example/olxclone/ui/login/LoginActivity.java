@@ -1,4 +1,4 @@
-package com.example.olxclone.ui.autenticacao;
+package com.example.olxclone.ui.login;
 
 import android.os.Bundle;
 
