@@ -9,7 +9,6 @@ import com.example.olxclone.R;
 /**
  *  Created by João Bosco on 21/09/2022.
  */
-
 public class MainActivity extends AppCompatActivity {
 
     @Override

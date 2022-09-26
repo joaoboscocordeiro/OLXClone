@@ -6,6 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.olxclone.databinding.ActivitySignUpBinding;
 
+/**
+ *  Created by João Bosco on 21/09/2022.
+ */
 public class SignUpActivity extends AppCompatActivity {
 
     private ActivitySignUpBinding binding;

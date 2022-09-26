@@ -9,7 +9,6 @@ import com.example.olxclone.databinding.ActivityLoginBinding;
 /**
  *  Created by João Bosco on 21/09/2022.
  */
-
 public class LoginActivity extends AppCompatActivity {
 
     private ActivityLoginBinding binding;
