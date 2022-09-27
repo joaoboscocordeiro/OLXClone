@@ -33,7 +33,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/edit_name"
-                android:textColor="@color/color_purple"/>
+                android:textColor="@color/color_purple" />
 
             <EditText
                 android:id="@+id/edit_name"
@@ -52,16 +52,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/edit_email"
-                android:textColor="@color/color_purple"/>
+                android:textColor="@color/color_purple" />
 
             <EditText
                 android:id="@+id/edit_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/bg_edit"
                 android:drawableStart="@drawable/ic_email"
                 android:drawablePadding="16dp"
-                android:layout_marginTop="8dp"
                 android:hint="@string/edit_email"
                 android:inputType="textEmailAddress"
                 android:padding="16dp" />
@@ -71,16 +71,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/edit_phone"
-                android:textColor="@color/color_purple"/>
+                android:textColor="@color/color_purple" />
 
             <EditText
                 android:id="@+id/edit_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/bg_edit"
                 android:drawableStart="@drawable/ic_phone"
                 android:drawablePadding="16dp"
-                android:layout_marginTop="8dp"
                 android:hint="@string/edit_phone"
                 android:inputType="phone"
                 android:padding="16dp" />
@@ -90,7 +90,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/edit_password"
-                android:textColor="@color/color_purple"/>
+                android:textColor="@color/color_purple" />
 
             <EditText
                 android:id="@+id/edit_password"
@@ -110,6 +110,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/bg_button"
+                android:onClick="validate"
                 android:text="@string/btn_register"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
@@ -119,8 +120,8 @@
                 android:id="@+id/progress_bar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:layout_gravity="center"
+                android:layout_marginTop="16dp"
                 android:theme="@style/ProgressBar"
                 android:visibility="gone"
                 tools:visibility="visible" />

@@ -5,6 +5,7 @@
     <string name="app">OLX</string>
 
     <!-- Screen Login Activity -->
+    <string name="txt_login_toolbar_title">Login</string>
     <string name="edit_email_login">Email</string>
     <string name="edit_password_login">Password</string>
     <string name="btn_sign_in_login">Entrar</string>
@@ -21,5 +22,6 @@
     <!-- Screen Recovery Account Activity -->
     <string name="txt_recovery_account">Informe seu email cadastrado e você receberá um link para alterar a senha.</string>
     <string name="btn_recovery_password">Recuperar Senha</string>
+    <string name="txt_sing_up_toolbar_title">Criar Conta</string>
 
 </resources>
