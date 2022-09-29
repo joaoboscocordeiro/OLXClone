@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.olxclone.R;
 import com.example.olxclone.databinding.ActivitySignUpBinding;
 
 /**
@@ -21,6 +22,7 @@ public class SignUpActivity extends AppCompatActivity {
         binding = ActivitySignUpBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        binding.toolbarCreateAccount.textToolbarTitle.setText(R.string.txt_sing_up_toolbar_title);
 
     }
 
