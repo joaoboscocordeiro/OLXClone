@@ -2,15 +2,20 @@ package com.example.olxclone.ui.login;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.olxclone.R;
 import com.example.olxclone.databinding.ActivityLoginBinding;
+import com.example.olxclone.data.FirebaseHelper;
+import com.example.olxclone.ui.register.RecoveryAccountActivity;
 import com.example.olxclone.ui.register.SignUpActivity;
+import com.example.olxclone.ui.activity.MainActivity;
 
 /**
- *  Created by João Bosco on 21/09/2022.
+ * Created by João Bosco on 21/09/2022.
  */
 public class LoginActivity extends AppCompatActivity {
 
@@ -27,6 +32,47 @@ public class LoginActivity extends AppCompatActivity {
         binding.textLoginRegister.setOnClickListener(view -> {
             Intent intent = new Intent(this, SignUpActivity.class);
             startActivity(intent);
+        });
+        binding.textLoginRecoverPassword.setOnClickListener(view -> {
+            Intent intent = new Intent(this, RecoveryAccountActivity.class);
+            startActivity(intent);
+        });
+    }
+
+    public void validate(View view) {
+
+        String email = binding.editEmailLogin.getText().toString();
+        String password = binding.editPasswordLogin.getText().toString();
+
+        if (!email.isEmpty()) {
+            if (!password.isEmpty()) {
+
+                binding.progressBar.setVisibility(View.VISIBLE);
+                logar(email, password);
+
+            } else {
+                binding.editPasswordLogin.requestFocus();
+                binding.editPasswordLogin.setError("Informe sua senha.");
+            }
+        } else {
+            binding.editEmailLogin.requestFocus();
+            binding.editEmailLogin.setError("Informe seu email.");
+        }
+    }
+
+    private void logar(String email, String password) {
+        FirebaseHelper.getAuth().signInWithEmailAndPassword(
+                email, password
+        ).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                startActivity(new Intent(this, MainActivity.class));
+                finish();
+                Toast.makeText(this, "Login efetuado com sucesso.", Toast.LENGTH_LONG).show();
+            } else {
+                String error = FirebaseHelper.validFirebase(task.getException().getMessage());
+                Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
+            }
+            binding.progressBar.setVisibility(View.GONE);
         });
     }
 }

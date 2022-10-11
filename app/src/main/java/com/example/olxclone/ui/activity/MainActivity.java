@@ -1,4 +1,4 @@
-package com.example.olxclone.ui.view;
+package com.example.olxclone.ui.activity;
 
 import android.os.Bundle;
 

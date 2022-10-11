@@ -1,5 +1,6 @@
 package com.example.olxclone.ui.register;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -8,6 +9,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.olxclone.R;
 import com.example.olxclone.databinding.ActivitySignUpBinding;
+import com.example.olxclone.data.FirebaseHelper;
+import com.example.olxclone.model.User;
+import com.example.olxclone.ui.activity.MainActivity;
 
 /**
  * Created by João Bosco on 21/09/2022.
@@ -23,6 +27,7 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         binding.toolbarCreateAccount.textToolbarTitle.setText(R.string.txt_sing_up_toolbar_title);
+        binding.toolbarCreateAccount.imbBack.setOnClickListener(v -> finish());
 
     }
 
@@ -38,7 +43,15 @@ public class SignUpActivity extends AppCompatActivity {
                 if (!phone.isEmpty()) {
                     if (!password.isEmpty()) {
 
-                        Toast.makeText(this, "Tudo certo...", Toast.LENGTH_LONG).show();
+                        binding.progressBar.setVisibility(View.VISIBLE);
+
+                        User user = new User();
+                        user.setName(name);
+                        user.setEmail(email);
+                        user.setPhone(phone);
+                        user.setPassword(password);
+
+                        createUser(user);
 
                     } else {
                         binding.editPassword.requestFocus();
@@ -56,5 +69,24 @@ public class SignUpActivity extends AppCompatActivity {
             binding.editName.requestFocus();
             binding.editName.setError("Informe seu nome!");
         }
+    }
+
+    private void createUser(User user) {
+        FirebaseHelper.getAuth().createUserWithEmailAndPassword(
+                user.getEmail(), user.getPassword()
+        ).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                String idUser = task.getResult().getUser().getUid();
+                user.setId(idUser);
+                user.save();
+
+                startActivity(new Intent(this, MainActivity.class));
+                finish();
+                binding.progressBar.setVisibility(View.GONE);
+            } else {
+                String error = FirebaseHelper.validFirebase(task.getException().getMessage());
+                Toast.makeText(this, error, Toast.LENGTH_LONG).show();
+            }
+        });
     }
 }
