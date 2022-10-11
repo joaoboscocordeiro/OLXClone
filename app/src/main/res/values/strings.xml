@@ -24,7 +24,11 @@
     <string name="txt_recovery_account">Informe seu email cadastrado e você receberá um link para alterar a senha.</string>
     <string name="btn_recovery_password">Recuperar Senha</string>
     <string name="txt_recovery_toolbar_title">Recuperar Conta</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Menu Bottom Navigation -->
+    <string name="menu_home">Home</string>
+    <string name="menu_my_ads">Anúncios</string>
+    <string name="menu_favorite">Favoritos</string>
+    <string name="menu_account">Conta</string>
 
 </resources>
