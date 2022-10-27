@@ -3,26 +3,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_main"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/menu_home">
 
     <fragment
-        android:id="@+id/homeFragment"
+        android:id="@+id/menu_home"
         android:name="com.example.olxclone.ui.fragment.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
+
     <fragment
-        android:id="@+id/accountFragment"
+        android:id="@+id/menu_account"
         android:name="com.example.olxclone.ui.fragment.account.AccountFragment"
         android:label="fragment_account"
         tools:layout="@layout/fragment_account" />
+
     <fragment
-        android:id="@+id/favoriteFragment"
+        android:id="@+id/menu_favorite"
         android:name="com.example.olxclone.ui.fragment.favorite.FavoriteFragment"
         android:label="fragment_favorite"
         tools:layout="@layout/fragment_favorite" />
+
     <fragment
-        android:id="@+id/myAdsFragment"
+        android:id="@+id/menu_my_ads"
         android:name="com.example.olxclone.ui.fragment.myads.MyAdsFragment"
         android:label="fragment_my_ads"
         tools:layout="@layout/fragment_my_ads" />
+
 </navigation>

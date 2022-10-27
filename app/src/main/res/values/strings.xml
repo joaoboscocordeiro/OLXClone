@@ -31,4 +31,12 @@
     <string name="menu_favorite">Favoritos</string>
     <string name="menu_account">Conta</string>
 
+    <!-- Screen Fragment Account -->
+    <string name="fragment_access_account">Acesse sua conta agora!</string>
+    <string name="fragment_click">Clique aqui</string>
+    <string name="txt_profile_account">Perfil</string>
+    <string name="txt_address_account">Endereço</string>
+    <string name="txt_regulations_account">Regulamentos</string>
+    <string name="txt_help_account">Ajuda</string>
+
 </resources>
