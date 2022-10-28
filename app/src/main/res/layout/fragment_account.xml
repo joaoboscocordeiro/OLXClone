@@ -71,6 +71,7 @@
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_profile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -99,6 +100,7 @@
         <include layout="@layout/divider" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -127,6 +129,7 @@
         <include layout="@layout/divider" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_regulations"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -155,6 +158,7 @@
         <include layout="@layout/divider" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_help"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 

@@ -7,15 +7,18 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
-import com.example.olxclone.R;
+import com.example.olxclone.databinding.FragmentFavoriteBinding;
 
 
 public class FavoriteFragment extends Fragment {
 
+    private FragmentFavoriteBinding binding;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_favorite, container, false);
+        binding = FragmentFavoriteBinding.inflate (inflater, container, false);
+
+        return binding.getRoot();
     }
 }
