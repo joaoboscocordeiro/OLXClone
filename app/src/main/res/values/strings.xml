@@ -39,4 +39,12 @@
     <string name="txt_regulations_account">Regulamentos</string>
     <string name="txt_help_account">Ajuda</string>
 
+    <!-- Screen Activity Address -->
+    <string name="txt_address_cep">CEP</string>
+    <string name="txt_address_uf">UF</string>
+    <string name="edit_address_city">Cidade</string>
+    <string name="edit_address_county">Município</string>
+    <string name="edit_address_district">Bairro</string>
+    <string name="btn_save_address">Salvar</string>
+
 </resources>
