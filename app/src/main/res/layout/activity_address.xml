@@ -75,14 +75,14 @@
                         android:textColor="@color/color_purple" />
 
                     <EditText
-                        android:id="@+id/edit_name"
+                        android:id="@+id/edit_address_uf"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:background="@drawable/bg_edit"
                         android:drawablePadding="16dp"
-                        android:hint="@string/txt_address_cep"
-                        android:inputType="number"
+                        android:hint="@string/txt_address_uf"
+                        android:textAllCaps="false"
                         android:padding="16dp" />
 
                 </LinearLayout>
@@ -146,6 +146,7 @@
                 android:layout_marginTop="16dp"
                 android:background="@drawable/bg_button"
                 android:text="@string/btn_save_address"
+                android:onClick="validate"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
