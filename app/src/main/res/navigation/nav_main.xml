@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_main"
@@ -15,7 +16,17 @@
         android:id="@+id/menu_account"
         android:name="com.example.olxclone.ui.fragment.account.AccountFragment"
         android:label="fragment_account"
-        tools:layout="@layout/fragment_account" />
+        tools:layout="@layout/fragment_account" >
+        <action
+            android:id="@+id/action_menu_account_to_menu_home"
+            app:destination="@id/menu_home" />
+        <action
+            android:id="@+id/action_menu_account_to_addressActivity"
+            app:destination="@id/addressActivity" />
+        <action
+            android:id="@+id/action_menu_account_to_profileActivity"
+            app:destination="@id/profileActivity" />
+    </fragment>
 
     <fragment
         android:id="@+id/menu_favorite"
@@ -28,5 +39,15 @@
         android:name="com.example.olxclone.ui.fragment.myads.MyAdsFragment"
         android:label="fragment_my_ads"
         tools:layout="@layout/fragment_my_ads" />
+    <activity
+        android:id="@+id/addressActivity"
+        android:name="com.example.olxclone.ui.activity.AddressActivity"
+        android:label="activity_address"
+        tools:layout="@layout/activity_address" />
+    <activity
+        android:id="@+id/profileActivity"
+        android:name="com.example.olxclone.ui.activity.ProfileActivity"
+        android:label="activity_profile"
+        tools:layout="@layout/activity_profile" />
 
 </navigation>

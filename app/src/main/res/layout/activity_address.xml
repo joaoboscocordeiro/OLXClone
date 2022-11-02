@@ -55,7 +55,7 @@
                         android:background="@drawable/bg_edit"
                         android:drawablePadding="16dp"
                         android:hint="@string/txt_address_cep"
-                        android:inputType="number"
+                        android:inputType="phone"
                         android:padding="16dp" />
 
                 </LinearLayout>

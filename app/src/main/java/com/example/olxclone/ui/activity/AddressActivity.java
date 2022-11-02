@@ -18,6 +18,7 @@ import com.google.firebase.database.ValueEventListener;
 public class AddressActivity extends AppCompatActivity {
 
     private ActivityAddressBinding binding;
+    private Address address;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +44,7 @@ public class AddressActivity extends AppCompatActivity {
 
                         binding.progressBar.setVisibility(View.VISIBLE);
 
-                        Address address = new Address();
+                        if (address == null) address = new Address();
                         address.setCep(cep);
                         address.setUf(uf);
                         address.setCounty(county);
@@ -77,7 +78,7 @@ public class AddressActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
-                    Address address = snapshot.getValue(Address.class);
+                    address = snapshot.getValue(Address.class);
                     configAddress(address);
                 } else {
                     binding.progressBar.setVisibility(View.GONE);
