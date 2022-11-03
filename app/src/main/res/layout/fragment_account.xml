@@ -29,8 +29,10 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
+                android:id="@+id/img_account_profile"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:scaleType="centerCrop"
                 android:src="@drawable/ic_user" />
 
         </androidx.cardview.widget.CardView>
@@ -45,6 +47,7 @@
             app:layout_constraintTop_toTopOf="@+id/card_view">
 
             <TextView
+                android:id="@+id/txt_account_name_user"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/fragment_access_account"
@@ -52,6 +55,7 @@
                 android:textSize="18sp" />
 
             <TextView
+                android:id="@+id/txt_account"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/fragment_click"

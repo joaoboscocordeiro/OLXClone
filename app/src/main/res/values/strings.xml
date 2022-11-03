@@ -39,6 +39,9 @@
     <string name="txt_regulations_account">Regulamentos</string>
     <string name="txt_help_account">Ajuda</string>
 
+    <!-- Screen Fragment Home -->
+    <string name="btn_add_ads">Inserir Anúncio</string>
+
     <!-- Screen Activity Address -->
     <string name="txt_address_cep">CEP</string>
     <string name="txt_address_uf">UF</string>
