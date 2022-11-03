@@ -73,7 +73,7 @@
                 android:text="@string/edit_phone"
                 android:textColor="@color/color_purple" />
 
-            <EditText
+            <com.santalu.maskara.widget.MaskEditText
                 android:id="@+id/edit_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -83,7 +83,10 @@
                 android:drawablePadding="16dp"
                 android:hint="@string/edit_phone"
                 android:inputType="phone"
-                android:padding="16dp" />
+                android:padding="16dp"
+                app:mask="(__) _____-____"
+                app:maskCharacter="_"
+                app:maskStyle="completable" />
 
             <TextView
                 android:layout_width="match_parent"

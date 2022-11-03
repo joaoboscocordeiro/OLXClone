@@ -78,7 +78,7 @@ public class SignUpActivity extends AppCompatActivity {
             if (task.isSuccessful()) {
                 String idUser = task.getResult().getUser().getUid();
                 user.setId(idUser);
-                user.save();
+                user.save(binding.progressBar, getBaseContext());
 
                 startActivity(new Intent(this, MainActivity.class));
                 finish();

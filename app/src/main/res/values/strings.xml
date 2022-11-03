@@ -47,5 +47,6 @@
     <string name="edit_address_district">Bairro</string>
     <string name="btn_save_address">Salvar</string>
     <string name="toolbar_address">Endereço</string>
+    <string name="toolbar_profile_title">Perfil</string>
 
 </resources>
