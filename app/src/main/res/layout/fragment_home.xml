@@ -7,32 +7,17 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragment.home.HomeFragment">
 
-    <android.widget.Button
-        android:id="@+id/btn_add_ads"
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/btn_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:background="@drawable/bg_button"
         android:backgroundTint="@color/color_orange"
-        android:drawableStart="@drawable/ic_camera"
-        android:drawablePadding="16dp"
-        android:paddingHorizontal="16dp"
-        android:text="@string/btn_add_ads"
+        android:text="@string/btn_fab"
         android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="20sp"
+        app:fabSize="normal"
+        app:icon="@drawable/ic_add"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-<!--    <ProgressBar-->
-<!--        android:id="@+id/progress_bar"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_gravity="center"-->
-<!--        android:layout_marginTop="16dp"-->
-<!--        android:theme="@style/ProgressBar"-->
-<!--        android:visibility="gone"-->
-<!--        tools:visibility="visible" />-->
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

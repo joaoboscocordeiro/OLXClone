@@ -46,6 +46,7 @@ public class ProfileActivity extends AppCompatActivity {
         binding = ActivityProfileBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         binding.toolbarCreateAccount.textToolbarTitle.setText(R.string.toolbar_profile_title);
+        binding.toolbarCreateAccount.imbBack.setOnClickListener(v -> finish());
 
         configClicks();
         getProfile();

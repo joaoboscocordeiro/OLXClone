@@ -26,6 +26,7 @@ public class AddressActivity extends AppCompatActivity {
         binding = ActivityAddressBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         binding.toolbarAddress.textToolbarTitle.setText(R.string.toolbar_address);
+        binding.toolbarAddress.imbBack.setOnClickListener(v -> finish());
 
         recoverAddress();
     }

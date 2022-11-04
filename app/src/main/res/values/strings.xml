@@ -41,6 +41,7 @@
 
     <!-- Screen Fragment Home -->
     <string name="btn_add_ads">Inserir Anúncio</string>
+    <string name="btn_fab">Produtos</string>
 
     <!-- Screen Activity Address -->
     <string name="txt_address_cep">CEP</string>
@@ -51,5 +52,10 @@
     <string name="btn_save_address">Salvar</string>
     <string name="toolbar_address">Endereço</string>
     <string name="toolbar_profile_title">Perfil</string>
+
+    <!-- Screen Activity Form Ads -->
+    <string name="toolbar_form_ads_title">Produtos</string>
+    <string name="btn_sabe_ads">Salvar</string>
+
 
 </resources>

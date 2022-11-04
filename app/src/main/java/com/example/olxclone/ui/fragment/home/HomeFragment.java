@@ -29,7 +29,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void configClick() {
-        binding.btnAddAds.setOnClickListener(v -> {
+        binding.btnFab.setOnClickListener(v -> {
             if (FirebaseHelper.getAuthentication()) {
                 startActivity(new Intent(getActivity(), FormAdsActivity.class));
             } else {
