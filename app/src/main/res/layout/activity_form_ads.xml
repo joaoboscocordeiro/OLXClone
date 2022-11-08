@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:fillViewport="true"
-        android:verticalScrollbarPosition="@null"
+        android:scrollbarThumbVertical="@null"
         app:layout_constraintBottom_toTopOf="@id/btn_form_ads"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -92,7 +92,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
-                android:text="Título"
+                android:text="@string/txt_form_ads_title"
                 android:textColor="@color/color_purple"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/h_scroll_view" />
@@ -104,7 +104,7 @@
                 android:layout_marginHorizontal="24dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/bg_edit"
-                android:hint="Título"
+                android:hint="@string/txt_form_ads_title"
                 android:padding="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -121,29 +121,113 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/edit_form_ads_title" />
 
-            <EditText
+            <com.blackcat.currencyedittext.CurrencyEditText
                 android:id="@+id/edit_form_ads_pryce"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="24dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/bg_edit"
-                android:hint="R$ 0,00"
                 android:padding="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/txt_form_pryce" />
 
             <TextView
-                android:id="@+id/txt_form_"
+                android:id="@+id/txt_form_category"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
-                android:text="Categoria"
+                android:text="@string/txt_form_ads_category"
                 android:textColor="@color/color_purple"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/edit_form_ads_pryce" />
+
+            <android.widget.Button
+                android:id="@+id/btn_form_category"
+                style="@android:attr/borderlessButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_edit"
+                android:onClick="getCategory"
+                android:padding="16dp"
+                android:text="@string/btn_form_category"
+                android:textAlignment="textStart"
+                android:textAllCaps="false"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_form_category" />
+
+            <TextView
+                android:id="@+id/txt_form_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/txt_form_ads_desc"
+                android:textColor="@color/color_purple"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_form_category" />
+
+            <EditText
+                android:id="@+id/edit_form_ads_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_edit"
+                android:hint="@string/txt_form_ads_desc"
+                android:padding="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_form_desc" />
+
+            <TextView
+                android:id="@+id/txt_form_cep"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/txt_form_ads_cep"
+                android:textColor="@color/color_purple"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/edit_form_ads_desc" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="8dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_form_cep">
+
+                <EditText
+                    android:id="@+id/edit_form_ads_cep"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_edit"
+                    android:hint="@string/txt_form_ads_cep"
+                    android:padding="16dp" />
+
+                <ProgressBar
+                    android:id="@+id/progress_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:theme="@style/ProgressBar"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+
+            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -157,7 +241,7 @@
         android:background="@drawable/bg_button"
         android:backgroundTint="@color/color_orange"
         android:paddingHorizontal="16dp"
-        android:text="@string/btn_sabe_ads"
+        android:text="@string/btn_save_ads"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="20sp"

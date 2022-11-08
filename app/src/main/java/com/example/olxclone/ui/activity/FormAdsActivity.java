@@ -1,6 +1,8 @@
 package com.example.olxclone.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,5 +20,10 @@ public class FormAdsActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         binding.toolbarFormAds.textToolbarTitle.setText(R.string.toolbar_form_ads_title);
         binding.toolbarFormAds.imbBack.setOnClickListener(v -> finish());
+    }
+
+    public void getCategory(View view) {
+        Intent intent = new Intent(this, CategoryActivity.class);
+        startActivity(intent);
     }
 }

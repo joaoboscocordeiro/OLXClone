@@ -52,6 +52,9 @@ dependencies {
     // https://github.com/square/picasso
     implementation 'com.squareup.picasso:picasso:2.8'
 
+    // https://github.com/BlacKCaT27/CurrencyEditText
+    implementation 'com.github.BlacKCaT27:CurrencyEditText:2.0.2'
+
     // Tests
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

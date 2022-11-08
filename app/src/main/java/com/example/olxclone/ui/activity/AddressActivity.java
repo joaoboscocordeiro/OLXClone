@@ -15,6 +15,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
+/**
+ * Created by João Bosco on 31/10/2022.
+ */
 public class AddressActivity extends AppCompatActivity {
 
     private ActivityAddressBinding binding;

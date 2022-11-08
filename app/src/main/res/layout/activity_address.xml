@@ -82,7 +82,7 @@
                         android:background="@drawable/bg_edit"
                         android:drawablePadding="16dp"
                         android:hint="@string/txt_address_uf"
-                        android:textAllCaps="true"
+                        android:inputType="textCapWords"
                         android:padding="16dp" />
 
                 </LinearLayout>

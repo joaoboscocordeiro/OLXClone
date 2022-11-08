@@ -51,11 +51,21 @@
     <string name="edit_address_district">Bairro</string>
     <string name="btn_save_address">Salvar</string>
     <string name="toolbar_address">Endereço</string>
+
+    <!-- Screen Activity Profile -->
     <string name="toolbar_profile_title">Perfil</string>
 
     <!-- Screen Activity Form Ads -->
-    <string name="toolbar_form_ads_title">Produtos</string>
-    <string name="btn_sabe_ads">Salvar</string>
+    <string name="toolbar_form_ads_title">Novo Anuncio</string>
+    <string name="btn_save_ads">Salvar</string>
+    <string name="btn_form_category">Selecione a categoria</string>
+    <string name="txt_form_ads_title">Título</string>
+    <string name="txt_form_ads_category">Categoria</string>
+    <string name="txt_form_ads_desc">Descrição</string>
+    <string name="txt_form_ads_cep">CEP</string>
 
+    <!-- Screen Activity Category -->
+    <string name="toolbar_category_title">Categorias</string>
+    <string name="item_category">Todas as categorias</string>
 
 </resources>
