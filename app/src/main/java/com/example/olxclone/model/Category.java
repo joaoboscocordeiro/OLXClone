@@ -1,9 +1,11 @@
 package com.example.olxclone.model;
 
+import java.io.Serializable;
+
 /**
  * Created by João Bosco on 07/11/2022.
  */
-public class Category {
+public class Category implements Serializable {
 
     private int path;
     private String name;

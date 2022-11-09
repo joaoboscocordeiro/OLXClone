@@ -47,16 +47,18 @@
                         android:text="@string/txt_address_cep"
                         android:textColor="@color/color_purple" />
 
-                    <EditText
+                    <com.santalu.maskara.widget.MaskEditText
                         android:id="@+id/edit_address_cep"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:background="@drawable/bg_edit"
-                        android:drawablePadding="16dp"
                         android:hint="@string/txt_address_cep"
                         android:inputType="phone"
-                        android:padding="16dp" />
+                        android:padding="16dp"
+                        app:mask="_____-___"
+                        app:maskCharacter="_"
+                        app:maskStyle="completable" />
 
                 </LinearLayout>
 

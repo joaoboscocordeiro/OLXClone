@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -105,6 +106,7 @@
                 android:layout_marginTop="8dp"
                 android:background="@drawable/bg_edit"
                 android:hint="@string/txt_form_ads_title"
+                android:inputType="textCapWords"
                 android:padding="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -157,8 +159,7 @@
                 android:text="@string/btn_form_category"
                 android:textAlignment="textStart"
                 android:textAllCaps="false"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/txt_form_category" />
@@ -203,29 +204,44 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="24dp"
                 android:layout_marginTop="8dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/txt_form_cep">
 
-                <EditText
-                    android:id="@+id/edit_form_ads_cep"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_edit"
-                    android:hint="@string/txt_form_ads_cep"
-                    android:padding="16dp" />
+                    android:orientation="horizontal">
 
-                <ProgressBar
-                    android:id="@+id/progress_bar"
-                    android:layout_width="match_parent"
+                    <com.santalu.maskara.widget.MaskEditText
+                        android:id="@+id/edit_form_ads_cep"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_edit"
+                        android:hint="@string/txt_form_ads_cep"
+                        android:inputType="phone"
+                        android:padding="16dp"
+                        app:mask="_____-___"
+                        app:maskCharacter="_"
+                        app:maskStyle="completable" />
+
+                    <ProgressBar
+                        android:id="@+id/progress_bar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="2"
+                        android:theme="@style/ProgressBar" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txt_form_locality"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:theme="@style/ProgressBar"
-                    android:visibility="gone"
-                    tools:visibility="visible" />
+                    android:text="Vitória, Centro - DDD 27"/>
 
             </LinearLayout>
 

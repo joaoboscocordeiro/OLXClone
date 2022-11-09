@@ -1,7 +1,7 @@
 package com.example.olxclone.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -40,6 +40,9 @@ public class CategoryActivity extends AppCompatActivity implements AdapterCatego
 
     @Override
     public void onClick(Category category) {
-        Toast.makeText(this, category.getName(), Toast.LENGTH_LONG).show();
+        Intent intent = new Intent();
+        intent.putExtra("selectCategory", category);
+        setResult(RESULT_OK, intent);
+        finish();
     }
 }
