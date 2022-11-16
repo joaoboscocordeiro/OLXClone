@@ -67,5 +67,8 @@
     <!-- Screen Activity Category -->
     <string name="toolbar_category_title">Categorias</string>
     <string name="item_category">Todas as categorias</string>
+    <string name="btn_sheet_camera">Camera</string>
+    <string name="btn_sheet_gallery">Galeria</string>
+    <string name="btn_sheet_close">Sair</string>
 
 </resources>

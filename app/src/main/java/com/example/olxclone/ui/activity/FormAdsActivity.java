@@ -21,6 +21,7 @@ import com.example.olxclone.databinding.ActivityFormAdsBinding;
 import com.example.olxclone.model.Address;
 import com.example.olxclone.model.Category;
 import com.example.olxclone.model.Cep;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -51,6 +52,13 @@ public class FormAdsActivity extends AppCompatActivity {
 
         initRetrofit();
         getAddress();
+        configClick();
+    }
+
+    private void configClick() {
+        binding.imgFormAds0.setOnClickListener(v -> showBottomSheet(0));
+        binding.imgFormAds1.setOnClickListener(v -> showBottomSheet(1));
+        binding.imgFormAds2.setOnClickListener(v -> showBottomSheet(2));
     }
 
     public void getCategory(View view) {
@@ -76,6 +84,26 @@ public class FormAdsActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
+        });
+    }
+
+    private void showBottomSheet(int requestCode) {
+        View bottomSheet = getLayoutInflater().inflate(R.layout.bottom_sheet, null);
+        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this, R.style.BottomSheetDialog);
+        bottomSheetDialog.setContentView(bottomSheet);
+        bottomSheetDialog.show();
+
+        bottomSheet.findViewById(R.id.btn_sheet_camera).setOnClickListener(v -> {
+            bottomSheetDialog.dismiss();
+            Toast.makeText(this, "Camera", Toast.LENGTH_SHORT).show();
+        });
+        bottomSheet.findViewById(R.id.btn_sheet_gallery).setOnClickListener(v -> {
+            bottomSheetDialog.dismiss();
+            Toast.makeText(this, "Galeria", Toast.LENGTH_SHORT).show();
+        });
+        bottomSheet.findViewById(R.id.btn_sheet_close).setOnClickListener(v -> {
+            bottomSheetDialog.dismiss();
+            Toast.makeText(this, "Sair", Toast.LENGTH_SHORT).show();
         });
     }
 

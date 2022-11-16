@@ -50,8 +50,10 @@
                         app:cardCornerRadius="10dp">
 
                         <ImageView
+                            android:id="@+id/img_form_ads_0"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:scaleType="center"
                             android:src="@drawable/ic_camera" />
 
                     </androidx.cardview.widget.CardView>
@@ -64,8 +66,10 @@
                         app:cardCornerRadius="10dp">
 
                         <ImageView
+                            android:id="@+id/img_form_ads_1"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:scaleType="center"
                             android:src="@drawable/ic_camera" />
 
                     </androidx.cardview.widget.CardView>
@@ -77,8 +81,10 @@
                         app:cardCornerRadius="10dp">
 
                         <ImageView
+                            android:id="@+id/img_form_ads_2"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:scaleType="center"
                             android:src="@drawable/ic_camera" />
 
                     </androidx.cardview.widget.CardView>
@@ -241,7 +247,8 @@
                     android:id="@+id/txt_form_locality"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Vitória, Centro - DDD 27"/>
+                    android:textColor="@color/color_purple"
+                    tools:text="Vitória, Centro - DDD 27"/>
 
             </LinearLayout>
 

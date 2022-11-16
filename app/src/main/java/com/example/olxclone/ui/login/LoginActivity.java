@@ -2,6 +2,8 @@ package com.example.olxclone.ui.login;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Toast;
 
@@ -29,6 +31,9 @@ public class LoginActivity extends AppCompatActivity {
 
         binding.toolbarLogin.textToolbarTitle.setText(R.string.txt_login_toolbar_title);
 
+        binding.editEmailLogin.addTextChangedListener(watcher);
+        binding.editPasswordLogin.addTextChangedListener(watcher);
+
         binding.textLoginRegister.setOnClickListener(view -> {
             Intent intent = new Intent(this, SignUpActivity.class);
             startActivity(intent);
@@ -38,6 +43,22 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);
         });
     }
+
+    private final TextWatcher watcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            if (!s.toString().isEmpty())
+                binding.btnSignInLogin.setEnabled(true);
+            else
+                binding.btnSignInLogin.setEnabled(false);
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {}
+    };
 
     public void validate(View view) {
 
