@@ -6,6 +6,7 @@ plugins {
 android {
     compileSdkVersion 32
     buildToolsVersion "30.0.3"
+    namespace 'com.example.olxclone'
     defaultConfig {
         applicationId "com.example.olxclone"
         minSdkVersion 23
@@ -27,7 +28,6 @@ android {
     buildFeatures {
         viewBinding = true
     }
-    namespace 'com.example.olxclone'
 }
 
 dependencies {
@@ -42,6 +42,10 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth'
     implementation 'com.google.firebase:firebase-database'
     implementation 'com.google.firebase:firebase-storage'
+
+    // https://jakewharton.github.io/butterknife/
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    //annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 
     // https://github.com/santalu/maskara
     implementation 'com.github.santalu:maskara:1.0.0'

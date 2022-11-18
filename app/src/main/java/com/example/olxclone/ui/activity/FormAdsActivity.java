@@ -2,6 +2,7 @@ package com.example.olxclone.ui.activity;
 
 import static android.content.ContentValues.TAG;
 
+import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -26,6 +27,10 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
+import com.gun0912.tedpermission.PermissionListener;
+import com.gun0912.tedpermission.normal.TedPermission;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -95,11 +100,11 @@ public class FormAdsActivity extends AppCompatActivity {
 
         bottomSheet.findViewById(R.id.btn_sheet_camera).setOnClickListener(v -> {
             bottomSheetDialog.dismiss();
-            Toast.makeText(this, "Camera", Toast.LENGTH_SHORT).show();
+            verifyPermissionCamera(requestCode);
         });
         bottomSheet.findViewById(R.id.btn_sheet_gallery).setOnClickListener(v -> {
             bottomSheetDialog.dismiss();
-            Toast.makeText(this, "Galeria", Toast.LENGTH_SHORT).show();
+            verifyPermissionGallery(requestCode);
         });
         bottomSheet.findViewById(R.id.btn_sheet_close).setOnClickListener(v -> {
             bottomSheetDialog.dismiss();
@@ -107,10 +112,62 @@ public class FormAdsActivity extends AppCompatActivity {
         });
     }
 
+    private void verifyPermissionCamera(int requestCode) {
+        PermissionListener permissionListener = new PermissionListener() {
+            @Override
+            public void onPermissionGranted() {
+                openCamera(requestCode);
+            }
+
+            @Override
+            public void onPermissionDenied(List<String> deniedPermissions) {
+                Toast.makeText(FormAdsActivity.this, "É preciso aceitar as permissões para adicionar fotos.", Toast.LENGTH_LONG).show();
+            }
+        };
+
+        showDialogPermission(permissionListener,
+                new String[]{Manifest.permission.CAMERA},
+                "Se você não aceitar a permissão, não poderá acessar a Camera do dispositivo. Deseja ativar a permissão agora?");
+    }
+
+    private void verifyPermissionGallery(int requestCode) {
+        PermissionListener permissionListener = new PermissionListener() {
+            @Override
+            public void onPermissionGranted() {
+                openGallery(requestCode);
+            }
+
+            @Override
+            public void onPermissionDenied(List<String> deniedPermissions) {
+                Toast.makeText(FormAdsActivity.this, "É preciso aceitar as permissões para acessar a galeria.", Toast.LENGTH_LONG).show();
+            }
+        };
+        showDialogPermission(permissionListener,
+                new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                "Se você não aceitar a permissão, não poderá acessar a Galeria do dispositivo. Deseja ativar a permissão agora?");
+
+    }
+
+    private void openCamera(int requestCode) {}
+
+    private void openGallery(int requestCode) {}
+
+    private void showDialogPermission(PermissionListener permissionListener, String[] permissions, String message) {
+        TedPermission.create()
+                .setPermissionListener(permissionListener)
+                .setDeniedTitle("Permissão Necessárias.")
+                .setDeniedMessage(message)
+                .setDeniedCloseButtonText("NÃO")
+                .setGotoSettingButtonText("SIM")
+                .setPermissions(permissions)
+                .check();
+    }
+
     private void configCEP() {
         binding.editFormAdsCep.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -128,7 +185,8 @@ public class FormAdsActivity extends AppCompatActivity {
             }
 
             @Override
-            public void afterTextChanged(Editable s) {}
+            public void afterTextChanged(Editable s) {
+            }
         });
     }
 

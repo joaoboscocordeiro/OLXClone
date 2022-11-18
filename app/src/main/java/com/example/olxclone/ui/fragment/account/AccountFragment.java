@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -23,10 +24,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import butterknife.BindView;
+
 public class AccountFragment extends Fragment {
 
     private FragmentAccountBinding binding;
     private User user;
+
+    @BindView(R.id.txt_account) TextView txtAccount;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -41,7 +46,6 @@ public class AccountFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-
         getUser();
     }
 
@@ -58,9 +62,7 @@ public class AccountFragment extends Fragment {
                 }
 
                 @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
+                public void onCancelled(@NonNull DatabaseError error) {}
             });
         }
     }
