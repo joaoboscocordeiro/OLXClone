@@ -50,10 +50,10 @@
                         app:cardCornerRadius="10dp">
 
                         <ImageView
-                            android:id="@+id/img_form_ads_0"
+                            android:id="@+id/img_form_ads_1"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:scaleType="center"
+                            android:scaleType="centerCrop"
                             android:src="@drawable/ic_camera" />
 
                     </androidx.cardview.widget.CardView>
@@ -66,10 +66,10 @@
                         app:cardCornerRadius="10dp">
 
                         <ImageView
-                            android:id="@+id/img_form_ads_1"
+                            android:id="@+id/img_form_ads_2"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:scaleType="center"
+                            android:scaleType="centerCrop"
                             android:src="@drawable/ic_camera" />
 
                     </androidx.cardview.widget.CardView>
@@ -81,10 +81,10 @@
                         app:cardCornerRadius="10dp">
 
                         <ImageView
-                            android:id="@+id/img_form_ads_2"
+                            android:id="@+id/img_form_ads_3"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:scaleType="center"
+                            android:scaleType="centerCrop"
                             android:src="@drawable/ic_camera" />
 
                     </androidx.cardview.widget.CardView>
@@ -268,6 +268,7 @@
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="20sp"
+        android:onClick="validate"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

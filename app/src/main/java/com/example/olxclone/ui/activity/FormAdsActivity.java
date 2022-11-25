@@ -4,7 +4,12 @@ import static android.content.ContentValues.TAG;
 
 import android.Manifest;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.ImageDecoder;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -60,10 +65,48 @@ public class FormAdsActivity extends AppCompatActivity {
         configClick();
     }
 
+    public void validate(View view) {
+
+        String title = binding.editFormAdsTitle.getText().toString();
+        double value = (double) binding.editFormAdsPryce.getRawValue() / 100;
+        String description = binding.editFormAdsDesc.getText().toString();
+
+        if (!title.isEmpty()) {
+            if (value > 0) {
+                if (selectCategory != null) {
+                    if (!description.isEmpty()) {
+                        if (cepLocal != null) {
+                            if (cepLocal.getLocalidade() != null) {
+
+                                Toast.makeText(this, "ok", Toast.LENGTH_SHORT).show();
+
+                            } else {
+                                Toast.makeText(this, "Digite um CEP válido!", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Toast.makeText(this, "Digite um CEP válido!", Toast.LENGTH_LONG).show();
+                        }
+                    } else {
+                        binding.editFormAdsDesc.requestFocus();
+                        binding.editFormAdsDesc.setError("Informe uma descrição");
+                    }
+                } else {
+                    Toast.makeText(this, "Selecione uma categoria!", Toast.LENGTH_LONG).show();
+                }
+            } else {
+                binding.editFormAdsPryce.requestFocus();
+                binding.editFormAdsPryce.setError("Informe um valor válido.");
+            }
+        } else {
+            binding.editFormAdsTitle.requestFocus();
+            binding.editFormAdsTitle.setError("Informe o Título.");
+        }
+    }
+
     private void configClick() {
-        binding.imgFormAds0.setOnClickListener(v -> showBottomSheet(0));
         binding.imgFormAds1.setOnClickListener(v -> showBottomSheet(1));
         binding.imgFormAds2.setOnClickListener(v -> showBottomSheet(2));
+        binding.imgFormAds3.setOnClickListener(v -> showBottomSheet(3));
     }
 
     public void getCategory(View view) {
@@ -148,9 +191,13 @@ public class FormAdsActivity extends AppCompatActivity {
 
     }
 
-    private void openCamera(int requestCode) {}
+    private void openCamera(int requestCode) {
+    }
 
-    private void openGallery(int requestCode) {}
+    private void openGallery(int requestCode) {
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(intent, requestCode);
+    }
 
     private void showDialogPermission(PermissionListener permissionListener, String[] permissions, String message) {
         TedPermission.create()
@@ -243,12 +290,54 @@ public class FormAdsActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (resultCode == RESULT_OK) {
+
+            Bitmap bitmap1;
+            Bitmap bitmap2;
+            Bitmap bitmap3;
+
+            Uri imgSelected = data.getData();
+            String pathImg;
+
             if (requestCode == REQUEST_CATEGORY) {
-                assert data != null;
                 Category category = (Category) data.getSerializableExtra("selectCategory");
                 selectCategory = category.getName();
                 binding.btnFormCategory.setText(selectCategory);
-            } else if (true) {
+            } else if (requestCode <= 3) { // Galeria
+
+                try {
+                    pathImg = imgSelected.toString();
+                    switch (requestCode) {
+                        case 1:
+                            if (Build.VERSION.SDK_INT < 28) {
+                                bitmap1 = MediaStore.Images.Media.getBitmap(getContentResolver(), imgSelected);
+                            } else {
+                                ImageDecoder.Source source = ImageDecoder.createSource(getContentResolver(), imgSelected);
+                                bitmap1 = ImageDecoder.decodeBitmap(source);
+                            }
+                            binding.imgFormAds1.setImageBitmap(bitmap1);
+                            break;
+                        case 2:
+                            if (Build.VERSION.SDK_INT < 28) {
+                                bitmap2 = MediaStore.Images.Media.getBitmap(getContentResolver(), imgSelected);
+                            } else {
+                                ImageDecoder.Source source = ImageDecoder.createSource(getContentResolver(), imgSelected);
+                                bitmap2 = ImageDecoder.decodeBitmap(source);
+                            }
+                            binding.imgFormAds2.setImageBitmap(bitmap2);
+                            break;
+                        case 3:
+                            if (Build.VERSION.SDK_INT < 28) {
+                                bitmap3 = MediaStore.Images.Media.getBitmap(getContentResolver(), imgSelected);
+                            } else {
+                                ImageDecoder.Source source = ImageDecoder.createSource(getContentResolver(), imgSelected);
+                                bitmap3 = ImageDecoder.decodeBitmap(source);
+                            }
+                            binding.imgFormAds3.setImageBitmap(bitmap3);
+                            break;
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             } else {
             }
         }
