@@ -9,6 +9,7 @@ import android.graphics.ImageDecoder;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 
 import com.example.olxclone.R;
 import com.example.olxclone.api.CEPService;
@@ -27,6 +29,7 @@ import com.example.olxclone.databinding.ActivityFormAdsBinding;
 import com.example.olxclone.model.Address;
 import com.example.olxclone.model.Category;
 import com.example.olxclone.model.Cep;
+import com.example.olxclone.model.Image;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -35,6 +38,11 @@ import com.google.firebase.database.ValueEventListener;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.normal.TedPermission;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
@@ -51,6 +59,8 @@ public class FormAdsActivity extends AppCompatActivity {
     private Address addressUser;
     private Cep cepLocal;
     private Retrofit retrofit;
+    private String currentPhotoPath;
+    private List<Image> imageList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -159,7 +169,7 @@ public class FormAdsActivity extends AppCompatActivity {
         PermissionListener permissionListener = new PermissionListener() {
             @Override
             public void onPermissionGranted() {
-                openCamera(requestCode);
+                dispatchTakePictureIntent(requestCode);
             }
 
             @Override
@@ -191,7 +201,89 @@ public class FormAdsActivity extends AppCompatActivity {
 
     }
 
-    private void openCamera(int requestCode) {
+    private void configUpload(int requestCode, String path) {
+
+        int request = 1;
+        switch (requestCode) {
+            case 1:
+            case 4:
+                request = 1;
+                break;
+            case 2:
+            case 5:
+                request = 2;
+                break;
+            case 3:
+            case 6:
+                request = 3;
+                break;
+        }
+        Image image = new Image(path, request);
+        if (imageList.size() > 0) {
+
+            boolean value = false;
+            for (int i = 0; i < imageList.size(); i++) {
+                if (imageList.get(i).getIndex() == request) {
+                    value = true;
+                }
+            }
+            if (value) {
+                imageList.set(request, image);
+            } else {
+                imageList.add(image);
+            }
+        } else {
+            imageList.add(image);
+        }
+    }
+
+    private File createImageFile() throws IOException {
+        // Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir      /* directory */
+        );
+
+        // Save a file: path for use with ACTION_VIEW intents
+        currentPhotoPath = image.getAbsolutePath();
+        return image;
+    }
+
+    private void dispatchTakePictureIntent(int requestCode) {
+
+        int request = 1;
+        switch (requestCode) {
+            case 1:
+                request = 4;
+                break;
+            case 2:
+                request = 5;
+                break;
+            case 3:
+                request = 6;
+                break;
+        }
+
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+        File photoFile = null;
+        try {
+            photoFile = createImageFile();
+        } catch (IOException ex) {
+            // Error occurred while creating the File
+        }
+        // Continue only if the File was successfully created
+        if (photoFile != null) {
+            Uri photoURI = FileProvider.getUriForFile(this,
+                    "com.example.olxclone.fileprovider",
+                    photoFile);
+            takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+            startActivityForResult(takePictureIntent, request);
+        }
     }
 
     private void openGallery(int requestCode) {
@@ -335,10 +427,28 @@ public class FormAdsActivity extends AppCompatActivity {
                             binding.imgFormAds3.setImageBitmap(bitmap3);
                             break;
                     }
+
+                    configUpload(requestCode, pathImg);
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-            } else {
+            } else { // Camera
+                File file = new File(currentPhotoPath);
+                pathImg = String.valueOf(file.toURI());
+
+                switch (requestCode) {
+                    case 4:
+                        binding.imgFormAds1.setImageURI(Uri.fromFile(file));
+                        break;
+                    case 5:
+                        binding.imgFormAds2.setImageURI(Uri.fromFile(file));
+                        break;
+                    case 6:
+                        binding.imgFormAds3.setImageURI(Uri.fromFile(file));
+                        break;
+                }
+                configUpload(requestCode, pathImg);
             }
         }
     }
