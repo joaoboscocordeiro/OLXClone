@@ -27,6 +27,7 @@ import com.example.olxclone.api.CEPService;
 import com.example.olxclone.data.FirebaseHelper;
 import com.example.olxclone.databinding.ActivityFormAdsBinding;
 import com.example.olxclone.model.Address;
+import com.example.olxclone.model.Adss;
 import com.example.olxclone.model.Category;
 import com.example.olxclone.model.Cep;
 import com.example.olxclone.model.Image;
@@ -35,6 +36,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.normal.TedPermission;
 
@@ -61,6 +64,8 @@ public class FormAdsActivity extends AppCompatActivity {
     private Retrofit retrofit;
     private String currentPhotoPath;
     private List<Image> imageList = new ArrayList<>();
+    private Adss adss;
+    private boolean newAds = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,17 +83,35 @@ public class FormAdsActivity extends AppCompatActivity {
     public void validate(View view) {
 
         String title = binding.editFormAdsTitle.getText().toString();
-        double value = (double) binding.editFormAdsPryce.getRawValue() / 100;
+        double pryce = (double) binding.editFormAdsPryce.getRawValue() / 100;
         String description = binding.editFormAdsDesc.getText().toString();
 
         if (!title.isEmpty()) {
-            if (value > 0) {
+            if (pryce > 0) {
                 if (selectCategory != null) {
                     if (!description.isEmpty()) {
                         if (cepLocal != null) {
                             if (cepLocal.getLocalidade() != null) {
 
-                                Toast.makeText(this, "ok", Toast.LENGTH_SHORT).show();
+                                if (adss == null) adss = new Adss();
+                                adss.setIdUser(FirebaseHelper.getIdFirebase());
+                                adss.setTitle(title);
+                                adss.setPryce(pryce);
+                                adss.setCategory(selectCategory);
+                                adss.setDescription(description);
+                                adss.setLocal(cepLocal);
+
+                                if (newAds) {
+                                    if (imageList.size() == 3) {
+                                        for (int i = 0; i < imageList.size(); i++) {
+                                            saveImageFirebase(imageList.get(i), i);
+                                        }
+                                    } else {
+                                        Toast.makeText(this, "Selecione as 3 imagens do anúncio.", Toast.LENGTH_LONG).show();
+                                    }
+                                }
+
+                                Toast.makeText(this, "Anúncio salvo!", Toast.LENGTH_SHORT).show();
 
                             } else {
                                 Toast.makeText(this, "Digite um CEP válido!", Toast.LENGTH_SHORT).show();
@@ -111,6 +134,30 @@ public class FormAdsActivity extends AppCompatActivity {
             binding.editFormAdsTitle.requestFocus();
             binding.editFormAdsTitle.setError("Informe o Título.");
         }
+    }
+
+    private void saveImageFirebase(Image image, int index) {
+        StorageReference storageReference = FirebaseHelper.getStorageReference()
+                .child("imagens")
+                .child("anuncios")
+                .child(adss.getId())
+                .child("imagem" + index + ".jpeg");
+
+        UploadTask uploadTask = storageReference.putFile(Uri.parse(image.getImgPath()));
+        uploadTask.addOnSuccessListener(taskSnapshot -> storageReference.getDownloadUrl().addOnCompleteListener(task -> {
+
+            if (newAds) {
+                adss.getUrlImages().add(index, task.getResult().toString());
+            } else {
+                adss.getUrlImages().set(image.getIndex(), task.getResult().toString());
+            }
+
+            if (imageList.size() == index + 1) {
+                adss.save(newAds);
+            }
+            finish();
+
+        })).addOnFailureListener(e -> Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show());
     }
 
     private void configClick() {
